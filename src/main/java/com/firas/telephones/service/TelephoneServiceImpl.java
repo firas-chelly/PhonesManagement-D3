@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.firas.telephones.entities.Company;
 import com.firas.telephones.entities.Telephone;
 import com.firas.telephones.repos.TelephoneRepository;
 
@@ -52,5 +53,41 @@ public class TelephoneServiceImpl implements TelephoneService{
 
 		return telephoneRepository.findAll(PageRequest.of(page, size));
 		}
+
+	
+	@Override
+	public List<Telephone> findByMarqueTel(String marque) {
+		return telephoneRepository.findByMarqueTel(marque);
+	}
+
+	@Override
+	public List<Telephone> findByMarqueTelContains(String marque) {
+		return telephoneRepository.findByMarqueTelContains(marque);
+	}
+
+	@Override
+	public List<Telephone> findByMarquePrix(String marque, Double prix) {
+		return telephoneRepository.findByMarquePrix(marque, prix);
+	}
+
+	@Override
+	public List<Telephone> findByCompany(Company company) {
+		return telephoneRepository.findByCompany(company);
+	}
+
+	@Override
+	public List<Telephone> findByCompanyIdCom(Long id) {
+		return telephoneRepository.findByCompanyIdCom(id);
+	}
+
+	@Override
+	public List<Telephone> findByOrderByMarqueTelAsc() {
+		return telephoneRepository.findByOrderByMarqueTelAsc();
+	}
+
+	@Override
+	public List<Telephone> trierTelsMarquePrix() {
+		return telephoneRepository.trierTelsMarquePrix();
+	}
 	}
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 
+import com.firas.telephones.entities.Company;
 import com.firas.telephones.entities.Telephone;
 import com.firas.telephones.repos.TelephoneRepository;
 import com.firas.telephones.service.TelephoneService;
@@ -74,5 +75,83 @@ class TelephonesApplicationTests {
 	System.out.println(t);
 	} */
 	}
+	
+	@Test
+	public void testFindTelephoneByMarque()
+	{
+	List<Telephone> tels = telephoneRepository.findByMarqueTel("iPhone 12");
+	for (Telephone t:tels) {
+		System.out.println(t);
+	}
+	}
+	
+	@Test
+	public void testFindTelephoneByMarqueContains()
+	{
+	List<Telephone> tels = telephoneRepository.findByMarqueTelContains("S");
+	for (Telephone t:tels) {
+		System.out.println(t);
+	}
+	}
+	
+	@Test
+	public void testFindByMarquePrix()
+	{
+	List<Telephone> tels = telephoneRepository.findByMarquePrix("Samsung A50",1700.0);
+		for (Telephone t:tels)
+		{
+			System.out.println(t);
+		}
+
+	}
+	
+	@Test
+	public void testfindByCompany()
+	{
+	Company com = new Company();
+	com.setIdCom(1L);
+	
+	List<Telephone> tels = telephoneRepository.findByCompany(com);
+	for (Telephone t:tels)
+	{
+		System.out.println(t);
+	}
+	}
+	
+	
+	@Test
+	public void testFindByCompanyIdCom()
+	{
+	List<Telephone> tels = telephoneRepository.findByCompanyIdCom(2L);
+		for (Telephone t:tels)
+		{
+			System.out.println(t);
+		}
+
+	}
+	
+	@Test
+	public void testfindByOrderByMarqueTelAsc()
+	{
+	List<Telephone> tels = telephoneRepository.findByOrderByMarqueTelAsc();
+	for (Telephone t : tels)
+		{
+			System.out.println(t);
+		}
+
+	}
+	
+	@Test
+	public void testTrierTelsMarquePrix()
+	{
+	List<Telephone> tels = telephoneRepository.trierTelsMarquePrix();
+	for (Telephone t : tels)
+	{
+		System.out.println(t);
+	}
+
+	}
+	
+	
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Telephone {
@@ -16,6 +17,9 @@ public class Telephone {
 	private String marqueTel;
 	private Double prixTel;
 	private Date dateCreation;
+	
+	@ManyToOne
+	private Company company;
 	
 	
 	
@@ -63,6 +67,18 @@ public class Telephone {
 	public String toString() {
 		return "Telephone [idTel=" + idTel + ", marqueTel=" + marqueTel + ", prixTel=" + prixTel + ", dateCreation="
 				+ dateCreation + "]";
+	}
+
+
+
+	public Company getCompany() {
+		return company;
+	}
+
+
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 	
 	
