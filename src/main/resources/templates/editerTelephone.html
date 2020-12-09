@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ 	  layout:decorator="template">
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
+<title>Modifier un Telephone</title>
+</head>
+<body>
+<div layout:fragment="Mycontent">
+<div class="container mt-5">
+<div class="card-body">
+
+<form action="updateTelephone" method="post">
+ <div class="form-group">
+ <label class="control-label">ID Telephone :</label>
+ <input type="text" th:value="${telephone.idTel}" name="idTel" readonly class="form-control"/>
+ </div>
+ <div class="form-group">
+ <label class="control-label">Nom Telephone :</label>
+ <input type="text" th:value="${telephone.marqueTel}"name="marqueTel" class="form-control"/>
+ </div>
+ <div class="form-group">
+ <label class="control-label">Prix Telephone :</label>
+ <input type="text" th:value="${telephone.prixTel}" name="prixTel" class="form-control"/>
+ </div>
+ 
+ <div class="form-group">
+ <label class="control-label"> Date création :</label>
+  <!-- <input type="date" class="form-control" name="date" th:value="${#dates.format('telephones.dateCreation', 'yyyy-MM-dd')}" />  -->
+
+ <th:formatDate pattern="yyyy-MM-dd" th:value="${telephone.dateCreation}" var="formatDate" />
+ <input type="date" name="date" th:field="${formatDate}" class="formcontrol"/> 
+
+  
+   </div>
+ <div>
+ <button type="submit" class="btn btn-primary">Modifier</button>
+</div>
+</form>
+</div>
+<br/>
+<br/>
+</div>
+</div>
+</body>
+</html>
+ 

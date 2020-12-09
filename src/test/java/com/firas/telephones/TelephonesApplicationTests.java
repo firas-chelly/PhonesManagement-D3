@@ -6,15 +6,19 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 
 import com.firas.telephones.entities.Telephone;
 import com.firas.telephones.repos.TelephoneRepository;
+import com.firas.telephones.service.TelephoneService;
 
 @SpringBootTest
 class TelephonesApplicationTests {
 	
 	@Autowired
 	private TelephoneRepository telephoneRepository;
+	@Autowired
+	private TelephoneService telephoneService;
 	
 	@Test
 	public void testCreateTelephone() {
@@ -53,6 +57,22 @@ class TelephonesApplicationTests {
 		for (Telephone t:tel) {
 			System.out.println(t);
 		}
+	}
+	
+	@Test
+	public void testFindByNomTelephoneContains()
+	{
+	Page<Telephone> tels = telephoneService.getAllTelephonesParPage(0,2);
+	System.out.println(tels.getSize());
+	System.out.println(tels.getTotalElements());
+	System.out.println(tels.getTotalPages());
+	tels.getContent().forEach(t -> {System.out.println(t.toString());
+	 });
+	/*ou bien
+	for (Telehpone t : tels)
+	{
+	System.out.println(t);
+	} */
 	}
 
 }

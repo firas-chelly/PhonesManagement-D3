@@ -3,6 +3,8 @@ package com.firas.telephones.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.firas.telephones.entities.Telephone;
@@ -45,4 +47,10 @@ public class TelephoneServiceImpl implements TelephoneService{
 		return telephoneRepository.findAll();
 	}
 
-}
+	@Override
+	public Page<Telephone> getAllTelephonesParPage(int page, int size) {
+
+		return telephoneRepository.findAll(PageRequest.of(page, size));
+		}
+	}
+

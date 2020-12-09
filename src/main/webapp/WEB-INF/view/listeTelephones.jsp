@@ -33,10 +33,8 @@ Création</th><th>Suppression<th>Edition</th>
  <td>${t.idTel}</td>
  <td>${t.marqueTel}</td>
  <td>${t.prixTel}</td>
- <td><fmt:formatDate pattern="dd/MM/yyyy"
-value="${t.dateCreation}" /></td>
- <td><a onclick="return confirm('Etes-vous sûr ?')"
-href="supprimerTelephone?id=${t.idTel }">Supprimer</a></td>
+ <td><fmt:formatDate pattern="dd/MM/yyyy" value="${t.dateCreation}" /></td>
+ <td><a onclick="return confirm('Etes-vous sûr ?')"href="supprimerTelephone?id=${t.idTel }">Supprimer</a></td>
  <td><a href="modifierTelephone?id=${t.idTel }">Edit</a></td>
  </tr>
  </c:forEach>

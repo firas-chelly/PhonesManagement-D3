@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,22 +45,35 @@ public class TelephoneController {
 	}
 	
 	@RequestMapping("/ListeTelephones")
-	public String listeTelephones(ModelMap modelMap)
+	public String listeTelephones(ModelMap modelMap,
+									@RequestParam (name="page",defaultValue = "0") int page,
+									@RequestParam (name="size", defaultValue = "2") int size)
 	{
-	List<Telephone> tels = telephoneService.getAllTelephones();
-	modelMap.addAttribute("telephones", tels);
-	return "listeTelephones";
+		Page<Telephone> prods = telephoneService.getAllTelephonesParPage(page, size);
+		modelMap.addAttribute("telephones", prods);
+		modelMap.addAttribute("pages", new int[prods.getTotalPages()]);
+		modelMap.addAttribute("currentPage", page);
+		modelMap.addAttribute("size", size);
+		return "listeTelephones";
+
 	}
 	
 	
 	@RequestMapping("/supprimerTelephone")
 	public String supprimerTelephone(@RequestParam("id") Long id,
-									 ModelMap modelMap)
+									 ModelMap modelMap,
+									 @RequestParam (name="page",defaultValue = "0") int page,
+									 @RequestParam (name="size", defaultValue = "2") int size)
 	
 	{
 	telephoneService.deleteTelephoneById(id);
-	List<Telephone> tels = telephoneService.getAllTelephones();
-	modelMap.addAttribute("telephones", tels);
+	Page<Telephone> tels = telephoneService.getAllTelephonesParPage(page,size);
+			
+			modelMap.addAttribute("telephones", tels);
+			modelMap.addAttribute("pages", new int[tels.getTotalPages()]);
+			modelMap.addAttribute("currentPage", page);
+			modelMap.addAttribute("size", size);
+
 	return "listeTelephones";
 	}
 	
